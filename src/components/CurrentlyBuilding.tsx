@@ -2,6 +2,44 @@
 export const CurrentlyBuilding = () => {
   return (
     <section className="py-8 md:py-8 px-6 md:px-[6vw] lg:px-[8vw] bg-background relative overflow-hidden flex items-center min-h-[70vh]">
+      <style>{`
+        .o2-card-border-wrapper {
+          position: absolute;
+          inset: 0;
+          border-radius: 14px;
+          padding: 1.5px;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          overflow: hidden;
+        }
+        .o2-card-border-inner {
+          position: absolute;
+          inset: -150%;
+          background: conic-gradient(from 0deg, transparent 60%, rgba(255, 90, 54, 1) 100%);
+          animation: o2-spin-border 3s linear infinite;
+        }
+        @keyframes o2-spin-border {
+          100% { transform: rotate(360deg); }
+        }
+        .grid-comet-wrapper {
+          position: absolute;
+          padding: 1px;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          overflow: hidden;
+          opacity: 0.85;
+        }
+        .grid-comet-inner {
+          position: absolute;
+          inset: -200%;
+          background: conic-gradient(from 0deg, transparent 70%, rgba(255, 90, 54, 1) 100%);
+          animation: o2-spin-border linear infinite;
+        }
+      `}</style>
 
       {/* Background left plain deep black, grid moved to right visual */}
 
@@ -59,17 +97,37 @@ export const CurrentlyBuilding = () => {
             <div className="w-[120%] h-[120%] absolute" style={{
               backgroundImage: 'linear-gradient(to right, rgba(255,90,54,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,90,54,0.12) 1px, transparent 1px)',
               backgroundSize: '45px 45px',
+              backgroundPosition: '50% 50%',
               maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
               WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)'
-            }}></div>
-
-            {/* Glowing Intersections on Grid */}
-            <div className="absolute top-[25%] left-[25%] w-[3px] h-[3px] bg-[#FF5A36] rounded-full shadow-[0_0_8px_2px_rgba(255,90,54,0.8)]"></div>
-            <div className="absolute top-[65%] right-[20%] w-[4px] h-[4px] bg-[#FF5A36] rounded-full shadow-[0_0_10px_2px_rgba(255,90,54,0.9)]"></div>
-            <div className="absolute top-[15%] right-[35%] w-[2px] h-[2px] bg-[#FF5A36]/90 rounded-full shadow-[0_0_6px_1px_rgba(255,90,54,0.6)]"></div>
-            <div className="absolute bottom-[25%] left-[30%] w-[3px] h-[3px] bg-[#FF5A36] rounded-full shadow-[0_0_8px_2px_rgba(255,90,54,0.7)]"></div>
-            <div className="absolute top-[45%] left-[10%] w-[2px] h-[2px] bg-[#FF5A36]/80 rounded-full shadow-[0_0_5px_1px_rgba(255,90,54,0.5)]"></div>
-            <div className="absolute bottom-[40%] right-[15%] w-[2px] h-[2px] bg-[#FF5A36]/80 rounded-full shadow-[0_0_5px_1px_rgba(255,90,54,0.5)]"></div>
+            }}>
+              {/* 5 Moving Light Comets tracking the grid lines perfectly */}
+              <div className="grid-comet-wrapper w-[270px] h-[180px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% - 90px), calc(-50% - 90px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '4s', animationDirection: 'normal' }}></div>
+              </div>
+              <div className="grid-comet-wrapper w-[180px] h-[270px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% + 180px), calc(-50% + 45px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '6s', animationDirection: 'reverse' }}></div>
+              </div>
+              <div className="grid-comet-wrapper w-[360px] h-[90px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% + 0px), calc(-50% + 180px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '5s', animationDirection: 'normal' }}></div>
+              </div>
+              <div className="grid-comet-wrapper w-[90px] h-[360px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% - 225px), calc(-50% + 90px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '7s', animationDirection: 'reverse' }}></div>
+              </div>
+              <div className="grid-comet-wrapper w-[450px] h-[450px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% + 0px), calc(-50% + 0px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '10s', animationDirection: 'normal' }}></div>
+              </div>
+              {/* 3 Additional Comets */}
+              <div className="grid-comet-wrapper w-[180px] h-[180px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% + 270px), calc(-50% - 225px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '5.5s', animationDirection: 'reverse' }}></div>
+              </div>
+              <div className="grid-comet-wrapper w-[270px] h-[90px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% - 135px), calc(-50% + 270px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '4.5s', animationDirection: 'normal' }}></div>
+              </div>
+              <div className="grid-comet-wrapper w-[90px] h-[270px]" style={{ left: '50%', top: '50%', transform: 'translate(calc(-50% - 45px), calc(-50% - 270px))' }}>
+                <div className="grid-comet-inner" style={{ animationDuration: '8s', animationDirection: 'reverse' }}></div>
+              </div>
+            </div>
           </div>
 
           {/* Central Radial Glow (Dark atmospheric warmth) */}
@@ -106,9 +164,13 @@ export const CurrentlyBuilding = () => {
           </svg>
 
           {/* Central Cart Container (Stronger edge glow, clearly illuminated) */}
-          <div className="relative z-20 w-[130px] h-[130px] md:w-[160px] md:h-[160px] rounded-[32px] border border-[#FF5A36]/60 bg-gradient-to-br from-[#1A0A05] to-[#050200] shadow-[0_0_35px_rgba(255,90,54,0.35),_inset_0_2px_15px_rgba(255,90,54,0.2)] flex items-center justify-center transition-all duration-500">
+          <div className="relative group z-20 w-[130px] h-[130px] md:w-[160px] md:h-[160px] rounded-[32px] border border-[#FF5A36]/60 bg-gradient-to-br from-[#1A0A05] to-[#050200] shadow-[0_0_35px_rgba(255,90,54,0.35),_inset_0_2px_15px_rgba(255,90,54,0.2)] flex items-center justify-center transition-all duration-500">
+            {/* Animated Hover Light */}
+            <div className="o2-card-border-wrapper opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" style={{ borderRadius: '32px' }}>
+              <div className="o2-card-border-inner"></div>
+            </div>
             {/* Glowing Icon (Colorized with CSS mask) */}
-            <div className="w-12 h-12 md:w-16 md:h-16 bg-[#FF5A36] drop-shadow-[0_0_12px_rgba(255,90,54,0.8)]" style={{
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-[#FF5A36] drop-shadow-[0_0_12px_rgba(255,90,54,0.8)] relative z-20" style={{
               maskImage: 'url(/pngs/cart.png)',
               maskSize: 'contain',
               maskRepeat: 'no-repeat',
@@ -121,27 +183,39 @@ export const CurrentlyBuilding = () => {
           </div>
 
           {/* Top-Left: Grocery */}
-          <div className="absolute top-[18%] md:top-[20%] left-[6%] md:left-[12%] px-4 md:px-5 py-2.5 min-w-[120px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60">
-            <img src="/pngs/grosaries.png" alt="Grocery" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
-            <span className="text-[13px] md:text-[14px] font-medium text-white/95">Grocery</span>
+          <div className="absolute top-[18%] md:top-[20%] left-[6%] md:left-[12%] px-4 md:px-5 py-2.5 min-w-[120px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60 group">
+            <div className="o2-card-border-wrapper opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+              <div className="o2-card-border-inner"></div>
+            </div>
+            <img src="/pngs/grosaries.png" alt="Grocery" className="w-4 h-4 md:w-5 md:h-5 object-contain relative z-20" />
+            <span className="text-[13px] md:text-[14px] font-medium text-white/95 relative z-20">Grocery</span>
           </div>
 
           {/* Top-Right: Local Shops */}
-          <div className="absolute top-[18%] md:top-[20%] right-[6%] md:right-[12%] px-4 md:px-5 py-2.5 min-w-[130px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60">
-            <img src="/pngs/shop.png" alt="Local Shops" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
-            <span className="text-[13px] md:text-[14px] font-medium text-white/95">Local Shops</span>
+          <div className="absolute top-[18%] md:top-[20%] right-[6%] md:right-[12%] px-4 md:px-5 py-2.5 min-w-[130px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60 group">
+            <div className="o2-card-border-wrapper opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+              <div className="o2-card-border-inner"></div>
+            </div>
+            <img src="/pngs/shop.png" alt="Local Shops" className="w-4 h-4 md:w-5 md:h-5 object-contain relative z-20" />
+            <span className="text-[13px] md:text-[14px] font-medium text-white/95 relative z-20">Local Shops</span>
           </div>
 
           {/* Bottom-Left: Order */}
-          <div className="absolute bottom-[20%] md:bottom-[20%] left-[8%] md:left-[12%] px-4 md:px-5 py-2.5 min-w-[110px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60">
-            <img src="/pngs/order.png" alt="Order" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
-            <span className="text-[13px] md:text-[14px] font-medium text-white/95">Order</span>
+          <div className="absolute bottom-[20%] md:bottom-[20%] left-[8%] md:left-[12%] px-4 md:px-5 py-2.5 min-w-[110px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60 group">
+            <div className="o2-card-border-wrapper opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+              <div className="o2-card-border-inner"></div>
+            </div>
+            <img src="/pngs/order.png" alt="Order" className="w-4 h-4 md:w-5 md:h-5 object-contain relative z-20" />
+            <span className="text-[13px] md:text-[14px] font-medium text-white/95 relative z-20">Order</span>
           </div>
 
           {/* Bottom-Right: Pickup */}
-          <div className="absolute bottom-[14%] md:bottom-[15%] right-[8%] md:right-[12%] px-4 md:px-5 py-2.5 min-w-[110px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60">
-            <img src="/pngs/pickup2.webp" alt="Pickup" className="w-4 h-4 md:w-5 md:h-5 object-contain" />
-            <span className="text-[13px] md:text-[14px] font-medium text-white/95">Pickup</span>
+          <div className="absolute bottom-[14%] md:bottom-[15%] right-[8%] md:right-[12%] px-4 md:px-5 py-2.5 min-w-[110px] rounded-[14px] border border-[#FF5A36]/30 bg-[#080302]/95 backdrop-blur-md shadow-[0_0_20px_rgba(255,90,54,0.12),_0_8px_16px_rgba(0,0,0,0.6)] flex items-center justify-center gap-2.5 z-30 transition-all duration-300 hover:border-[#FF5A36]/60 group">
+            <div className="o2-card-border-wrapper opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+              <div className="o2-card-border-inner"></div>
+            </div>
+            <img src="/pngs/pickup2.webp" alt="Pickup" className="w-4 h-4 md:w-5 md:h-5 object-contain relative z-20" />
+            <span className="text-[13px] md:text-[14px] font-medium text-white/95 relative z-20">Pickup</span>
           </div>
 
         </div>

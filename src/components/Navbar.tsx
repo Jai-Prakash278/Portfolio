@@ -3,16 +3,35 @@ import { useState, useEffect } from 'react';
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('Home');
+
+  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Scroll spy logic
+      let current = 'Home';
+      for (const section of navLinks) {
+        const element = document.getElementById(section.toLowerCase());
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Adjust threshold based on layout (e.g., if element top is near or above the middle of viewport)
+          if (rect.top <= window.innerHeight / 3) {
+            current = section;
+          }
+        }
+      }
+      setActiveSection(current);
     };
+    
+    // Call once to set initial state
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
 
   return (
     <>
@@ -32,7 +51,7 @@ export const Navbar = () => {
               key={item} 
               href={`#${item.toLowerCase()}`}
               className={`text-sm font-medium tracking-wide transition-all ${
-                item === 'Home' 
+                item === activeSection 
                   ? 'text-white border-b-2 border-accent pb-1' 
                   : 'text-white/70 hover:text-white pb-1 border-b-2 border-transparent'
               }`}
@@ -95,7 +114,9 @@ export const Navbar = () => {
               key={item} 
               href={`#${item.toLowerCase()}`}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-medium text-white/80 hover:text-white transition-colors"
+              className={`text-lg font-medium transition-colors ${
+                item === activeSection ? 'text-accent' : 'text-white/80 hover:text-white'
+              }`}
             >
               {item}
             </a>

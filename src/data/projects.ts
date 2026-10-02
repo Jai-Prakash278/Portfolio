@@ -15,7 +15,7 @@ export const projects = [
     description: "An AI-powered platform for candidate search, opportunity matching and insights visualization, built during a 36-hour BPUT hackathon.",
     technologies: ["React.js", "Node.js"],
     achievement: "BPUT Hackathon · Runner-up",
-    image: "/projects/talent-bridge.png",
+    image: "/Projects-Images/Hackathon1.png",
     link: "https://github.com/Jai-Prakash278/ai"
   },
   {

@@ -4,7 +4,7 @@ export const HeroFrameAnimation = () => {
   const { currentFrame, images, loaded } = useMouseFrameAnimation(1, 150);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center bg-background">
+    <section id="home" className="relative h-screen w-full overflow-hidden flex items-center bg-background">
 
       {/* Decorative Dotted Grid */}
       <div
