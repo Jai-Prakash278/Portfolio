@@ -5,8 +5,6 @@ export const Experience = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  // Refs to measure actual bullet content height for smooth transitions
-  const bulletRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
